@@ -1,0 +1,2 @@
+agv_pkg:restricted_layer:riotu_robot_pose_publisher:rviz_custom:ydlidar_ros_driver
+-DCATKIN_DEVEL_PREFIX=/home/ros3/ros1_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ros3/ros1_ws/install -G Unix Makefiles

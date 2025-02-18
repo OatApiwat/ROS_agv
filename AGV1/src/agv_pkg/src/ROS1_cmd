@@ -1,0 +1,22 @@
+rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=115200
+sudo nano ~/.bashrc
+rosrun rqt_reconfigure rqt_reconfigure
+rosrun map_server map_saver -f ~/ros1_ws/src/agv_pkg/maps/mymap
+rosrun tf2_tools echo.py map base_link
+
+#---------------------------------for mysql
+mysql -u agv_mysql -p -h localhost AGV_db
+123qwe
+SHOW TABLES;
+Simmulation 
++------------+----------+-----------+-----------+
+| goal_point | goal_x   | goal_y    | goal_th   |
++------------+----------+-----------+-----------+
+| HOME       | 0.409383 |   1.42524 | 0.0179991 |
+| A          |  4.26332 |   1.71272 |   2.36054 |
+| B          |  2.30321 |    3.8105 |    1.3695 |
+| C          |  2.00411 | -0.284193 |     0.927 |
+| D          | 0.719243 |   3.40034 |    0.4122 |
+| E          |  0.91085 |  0.471399 |    0.7653 |
++------------+----------+-----------+-----------+
+

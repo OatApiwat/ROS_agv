@@ -1,0 +1,44 @@
+<launch>
+  
+  <!-- bring up -->
+  <include file="$(find agv_pkg)/launch/bring_up.launch"/>
+
+  <!-- map select -->
+  <arg name="map_file" value="$(find agv_pkg)/maps/micLopBuri/mymap.yaml" />
+  <!-- <arg name="map_file" value="$(find agv_pkg)/maps/micRoom/mymap.yaml" /> -->
+
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- AMCL -->
+  <include file="$(find agv_pkg)/launch/amcl.launch"/>
+
+  <!-- move_base -->
+  <include file="$(find agv_pkg)/launch/move_base.launch"/>
+  
+  <!-- Rviz -->
+  <node pkg="rviz" type="rviz" name="rviz" required="true"
+        args="-d $(find agv_pkg)/rviz/navigation.rviz"/>
+  
+  <!-- rosbridge_server -->
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
+  
+  <!-- ros&SQL -->
+  <node name="nav_goal" pkg="agv_pkg" type="navigation_web.py" />
+
+  <!-- mqtt to seting goal -->
+  <!-- <node name="mqtt_ros_web_bridge" pkg="agv_pkg" type="mqtt_ros_web_bridge.py" /> -->
+
+    <!-- mqtt to seting BOX IoT -->
+  <!-- <node name="mqtt_ros_node" pkg="agv_pkg" type="AGV_to_BOX.py" /> -->
+
+    <!--mqtt_listener_node -->
+  <node name="mqtt_listener_node" pkg="agv_pkg" type="mqtt_to_BOX.py" />
+
+  <!-- mqtt to seting goal -->
+  <node name="mqtt_ros_bridge" pkg="agv_pkg" type="mqtt_ros_bridge.py" />
+
+
+  <!-- riotu_robot_pose_publisher -->
+  <node pkg="riotu_robot_pose_publisher" type="riotu_robot_pose_publisher" name="riotu_robot_pose_publisher"/>
+</launch>
